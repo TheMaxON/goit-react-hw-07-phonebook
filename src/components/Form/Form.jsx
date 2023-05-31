@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { InputContainer, Label, InputStyle, Button } from './Form.styled.jsx';
 import { selectContacts } from 'redux/selectors.js';
 import { addContacts } from 'redux/operations.js';
-import { IconButton } from 'rsuite';
 import PlusIcon from '@rsuite/icons/Plus';
 
 const Input = () => {
@@ -77,7 +76,15 @@ const Input = () => {
           required
         />
       </Label>
-      <Button type="submit">Add contact</Button>
+      <Button
+        type="submit"
+        appearance="primary"
+        color="cyan"
+        icon={<PlusIcon />}
+      >
+        Add contact
+      </Button>
+      {/* <Button type="submit">Add contact</Button> */}
     </InputContainer>
   );
 };

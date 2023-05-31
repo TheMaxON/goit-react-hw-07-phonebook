@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { IconButton } from 'rsuite';
+import PlusIcon from '@rsuite/icons/Plus';
 
 export const InputContainer = styled.form`
   margin: 15px auto;
@@ -32,33 +34,9 @@ export const InputStyle = styled.input`
   }
 `;
 
-export const Button = styled.button`
-  width: 85%;
-  margin: 10px 7.5% 0 7.5%;
-  appearance: none;
-  background-color: var(--color-accent);
-  border: none;
-  border-radius: 15px;
-  box-sizing: border-box;
+export const Button = styled(IconButton)`
+  margin: 10px 10px 0 15px;
   color: #ffffff;
-  cursor: pointer;
   font-size: 16px;
   font-weight: 600;
-  outline: none;
-  padding: 15px 24px;
-  text-align: center;
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  will-change: transform;
-
-  :hover {
-    box-shadow: rgba(0, 207, 177, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
-  }
-
-  :active {
-    box-shadow: none;
-    transform: translateY(0);
-  }
 `;
