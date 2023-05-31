@@ -1,6 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContacts, removeContacts } from 'redux/operations';
 
+const handlePending = state => {
+  state.contacts.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+  state.contacts.isLoading = false;
+  state.contacts.error = action.payload;
+};
+
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
@@ -17,44 +26,30 @@ const contactsSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchContacts.pending](state) {
-      state.contacts.isLoading = true;
-    },
+    [fetchContacts.pending]: handlePending,
     [fetchContacts.fulfilled](state, action) {
       state.contacts.isLoading = false;
       state.contacts.error = null;
       state.contacts.items = action.payload;
     },
-    [fetchContacts.rejected](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = action.payload;
-    },
-    [addContacts.pending](state) {
-      state.contacts.isLoading = true;
-    },
+    [fetchContacts.rejected]: handleRejected,
+    [addContacts.pending]: handlePending,
     [addContacts.fulfilled](state, action) {
       state.contacts.isLoading = false;
       state.contacts.error = null;
       state.contacts.items.push(action.payload);
     },
-    [addContacts.rejected](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = action.payload;
-    },
-    [removeContacts.pending](state) {
-      state.contacts.isLoading = true;
-    },
+    [addContacts.rejected]: handleRejected,
+    [removeContacts.pending]: handlePending,
     [removeContacts.fulfilled](state, action) {
       state.contacts.isLoading = false;
       state.contacts.error = null;
-      state.contacts.items = state.contacts.items.filter(
-        item => item.id !== action.payload.id
+      const index = state.contacts.items.findIndex(
+        task => task.id === action.payload.id
       );
+      state.contacts.items.splice(index, 1);
     },
-    [removeContacts.rejected](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = action.payload;
-    },
+    [removeContacts.rejected]: handleRejected,
   },
 });
 

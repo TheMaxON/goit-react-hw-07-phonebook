@@ -13,8 +13,6 @@ export const ContactsList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  console.log(filteredContacts);
-
   return (
     <>
       {filteredContacts.length > 0 && (
