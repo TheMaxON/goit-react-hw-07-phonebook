@@ -6,20 +6,18 @@ import {
   DeleteBtn,
 } from './ContactElem.styled.jsx';
 import { useDispatch } from 'react-redux';
-import { remove } from 'redux/contactsSlice';
+import { removeContacts } from 'redux/operations.js';
 
 export const ContactElem = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
-  const onRemove = () => {
-    dispatch(remove(id));
-  };
+  const onRemove = () => dispatch(removeContacts(id));
 
   return (
     <ContactElemStyle>
       <ContactName>{name}</ContactName>
       <ContactNumber>{number}</ContactNumber>
-      <DeleteBtn type="button" onClick={() => onRemove()}>
+      <DeleteBtn type="button" onClick={onRemove}>
         Remove
       </DeleteBtn>
     </ContactElemStyle>

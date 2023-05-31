@@ -1,29 +1,19 @@
 import { ContactElem } from '../ContactElem/ContactElem';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { fetchContacts } from 'redux/operations';
+import { selectFilteredContacts } from 'redux/selectors.js';
 import { ContactsListStyle } from './ContactsList.styled.jsx';
-import { getContacts, getFilter } from 'redux/selectors.js';
 
 export const ContactsList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+  const filteredContacts = useSelector(selectFilteredContacts);
 
-  // useEffect(() => {
-  //   const fetchContacts = async () => {
-  //     try {
-  //       const data = await getFetchedContacts();
-  //       console.log(data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
-  //   fetchContacts();
-  // }, []);
-
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter)
-  );
+  console.log(filteredContacts);
 
   return (
     <>
@@ -35,7 +25,7 @@ export const ContactsList = () => {
                 key={contact.id}
                 id={contact.id}
                 name={contact.name}
-                number={contact.number}
+                number={contact.phone}
               />
             );
           })}

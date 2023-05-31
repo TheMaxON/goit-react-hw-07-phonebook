@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { add } from 'redux/contactsSlice';
 import { InputContainer, Label, InputStyle, Button } from './Form.styled.jsx';
-import { getContacts } from 'redux/selectors.js';
+import { selectContacts } from 'redux/selectors.js';
+import { addContacts } from 'redux/operations.js';
 
 const Input = () => {
   const [contactName, setName] = useState('');
   const [contactNumber, setNumber] = useState('');
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const onChange = event => {
@@ -36,13 +36,7 @@ const Input = () => {
           contact.name.toLowerCase().trim() === contactName.toLowerCase().trim()
       )
     ) {
-      dispatch(
-        add({
-          id: nanoid(),
-          name: contactName,
-          number: contactNumber,
-        })
-      );
+      dispatch(addContacts({ name: contactName, phone: contactNumber }));
     } else {
       alert(`${contactName} is already in contacts`);
     }
