@@ -64,7 +64,7 @@ const Input = () => {
         />
       </Label>
       <Label htmlFor="number">
-        Number
+        Phone number
         <InputStyle
           type="tel"
           name="number"
@@ -79,12 +79,11 @@ const Input = () => {
       <Button
         type="submit"
         appearance="primary"
-        color="cyan"
+        color="green"
         icon={<PlusIcon />}
       >
         Add contact
       </Button>
-      {/* <Button type="submit">Add contact</Button> */}
     </InputContainer>
   );
 };

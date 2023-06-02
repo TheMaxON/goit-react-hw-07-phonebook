@@ -2,13 +2,11 @@
 @import 'rsuite/dist/rsuite.css';
 
 :root {
-  --color-background: linear-gradient(
-    119deg,
-    rgba(38, 38, 38, 1) 0%,
-    rgba(17, 17, 17, 1) 100%
-  );
-  --color-accent: #00a990;
-  --color-secondary: #1a1a1a;
+  --color-background: #edede8;
+  --color-secondary: #e3e4df;
+  --color-accent: #313e3f;
+  --color-text: #191a14;
+  --color-additional: #fdfdfc;
   --color-alert: #f34648;
 }
 

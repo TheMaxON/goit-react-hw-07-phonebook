@@ -1,20 +1,25 @@
 import { ContactElem } from '../ContactElem/ContactElem';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
-import { selectFilteredContacts } from 'redux/selectors.js';
+import { useSelector } from 'react-redux';
+import { selectFilteredContacts, selectIsLoading } from 'redux/selectors.js';
 import { ContactsListStyle } from './ContactsList.styled.jsx';
 
 export const ContactsList = () => {
-  const dispatch = useDispatch();
   const filteredContacts = useSelector(selectFilteredContacts);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  const isLoading = useSelector(selectIsLoading);
 
   return (
     <>
+      {!isLoading && filteredContacts.length === 0 && (
+        <h4
+          style={{
+            textAlign: 'center',
+            color: 'var(--color-accent)',
+            fontWeight: 700,
+          }}
+        >
+          No contacts yet...
+        </h4>
+      )}
       {filteredContacts.length > 0 && (
         <ContactsListStyle>
           {filteredContacts.map(contact => {

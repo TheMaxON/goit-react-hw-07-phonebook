@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ContactElemStyle = styled.li`
-  background-color: var(--color-secondary);
+  background-color: var(--color-additional);
   border-radius: 10px;
   margin-top: 5px;
   padding: 10px;
